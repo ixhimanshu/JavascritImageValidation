@@ -1,0 +1,47 @@
+<html>
+<body>
+
+<input type="file" id="fileUpload" />
+<input type="button" value="Upload" onclick="return Upload()" />
+<script type="text/javascript">
+function Upload() {
+    
+    var fileUpload = document.getElementById("fileUpload");
+ 
+ if (typeof (fileUpload.files) != "undefined") {
+          
+ var reader = new FileReader();
+ reader.readAsDataURL(fileUpload.files[0]);
+  reader.onload = function (e) {
+  var image = new Image();
+ 
+ image.src = e.target.result;
+                       
+               
+                image.onload = function () {
+                    var height = this.height;
+                    var width = this.width;
+
+
+                 if (width > 600) {
+                        alert("Width is greater than 600px crop it.");
+                        return false;
+                    }
+
+
+                    if (width < 600) {
+                        alert("Width is smaller than 600px upload another.");
+                        return false;
+                    }
+                    
+
+               else alert("Uploaded image has valid Height and Width.");
+                    return true;
+                };
+ 
+ }
+ } 
+ }
+</script>
+</body>
+</html>
